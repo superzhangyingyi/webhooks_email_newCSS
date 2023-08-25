@@ -102,6 +102,9 @@ class EBSCN:
     {
         background: #F5FAFA;
     }
+    table tr.err_bgc {
+        background: #FFCCCC;
+    }
 </style>
 """
 
@@ -278,12 +281,18 @@ class EBSCN:
                     if host["uuid"] == job_row[-1]:
                         job_row[3] = host["address"]
                         break
-
-                job_histories_table.append(
-                    "\t\t<tr>\n\t\t\t<td>"
-                    + "</td>\n\t\t\t<td>".join(job_row[0:-1])
-                    + "</td>\n\t\t</tr>"
-                )
+                if job_row[2] == '已完成':
+                    job_histories_table.append(
+                        "\t\t<tr>\n\t\t\t<td>"
+                        + "</td>\n\t\t\t<td>".join(job_row[0:-1])
+                        + "</td>\n\t\t</tr>"
+                    )
+                else:
+                    job_histories_table.append(
+                        "\t\t<tr class='err_bgc'>\n\t\t\t<td>"
+                        + "</td>\n\t\t\t<td>".join(job_row[0:-1])
+                        + "</td>\n\t\t</tr>"
+                    )
         return "\n".join(job_histories_table)
 
     def get_storage_pools_table(self):
