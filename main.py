@@ -86,8 +86,6 @@ class EBSCN:
         border: 1px solid #cad9ea;
         color: #666;
         height: 30px;
-        white-space: nowrap;
-        padding: 0px 20px;
     }
     table thead th
     {
